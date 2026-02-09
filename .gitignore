@@ -51,7 +51,6 @@ jacoco.exec
 
 # -------- Environment / secret files --------
 .env
-.env.*
 *.keystore
 *.jks
 
