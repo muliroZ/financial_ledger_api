@@ -1,0 +1,65 @@
+# -------- General OS / Editor files --------
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+desktop.ini
+# Swap / temp
+*~
+*.swp
+*.swo
+
+# -------- Build artifacts --------
+# Maven
+/target/
+dependency-reduced-pom.xml
+release.properties
+buildNumber.properties
+*.log
+*.tmp
+*.temp
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# ------- IDEs / editors -------
+.idea/
+*.iml
+out/
+.vscode/
+.project
+.classpath
+.settings/
+
+# -------- Maven wrapper / local repo --------
+# keep wrapper files in repo, but ignore local mvn repo
+.mvn/repository/
+.m2/
+
+# -------- Spring / logs / test reports --------
+logs/
+hs_err_pid*
+spring.log
+nohup.out
+test-output/
+surefire-reports/
+failsafe-reports/
+jacoco.exec
+
+# -------- Environment / secret files --------
+.env
+.env.*
+*.keystore
+*.jks
+
+# -------- Docker / Compose --------
+docker-compose.override.yml
+docker-compose.*.yml
+
+
+# -------- Misc --------
+/.idea/
+

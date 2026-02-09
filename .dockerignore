@@ -1,0 +1,49 @@
+# Ignore local build outputs
+target
+target/
+**/target
+
+# Git
+.git
+.gitignore
+
+# IDEs
+.idea
+*.iml
+.vscode
+.project
+.classpath
+.settings
+
+# Maven cache / local repo
+.m2
+.mvn/repository
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temp
+*.log
+logs
+tmp
+temp
+*.tmp
+
+# Docker / compose metadata not needed in image
+.dockerignore
+docker-compose*.yml
+
+# Documentation and CI config not needed in image
+README.md
+/.github
+
+# Node modules (if present)
+node_modules
+
+# env files with secrets
+.env
+.env.*
+*.keystore
+*.jks
