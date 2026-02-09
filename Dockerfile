@@ -10,8 +10,13 @@ RUN mvn -B package -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
+RUN addgroup -S spring && adduser -S spring -G spring
+
 COPY --from=build /app/target/*.jar app.jar
+
+USER spring
 
 EXPOSE 8080
 
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+ENTRYPOINT [ "java", "-XX:MaxRAMPercentage=75", "-XX:+UseG1GC", "-jar", "app.jar" ]
+
