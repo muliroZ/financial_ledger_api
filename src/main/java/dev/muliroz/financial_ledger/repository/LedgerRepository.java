@@ -14,12 +14,12 @@ public interface LedgerRepository extends JpaRepository<Ledger, UUID> {
 
     @Query("""
         SELECT COALESCE(SUM(
-            CASE WHEN l.type = 'CREDIT' THEN l.amount
+            CASE WHEN l.type = dev.muliroz.financial_ledger.model.TransactionType.CREDIT THEN l.amount
                 ELSE -l.amount
             END
         ), 0)
         FROM Ledger l
-        WHERE l.wallet.id == :wallet_id
+        WHERE l.wallet.id = :wallet_id
     """)
     BigDecimal calculateBalance(@Param("wallet_id") UUID walletId);
 
