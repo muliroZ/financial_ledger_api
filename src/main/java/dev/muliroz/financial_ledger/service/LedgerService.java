@@ -1,6 +1,7 @@
 package dev.muliroz.financial_ledger.service;
 
 import dev.muliroz.financial_ledger.dto.TransactionDTO;
+import dev.muliroz.financial_ledger.exception.IdempotencyKeyException;
 import dev.muliroz.financial_ledger.exception.InsufficientBalanceException;
 import dev.muliroz.financial_ledger.model.Ledger;
 import dev.muliroz.financial_ledger.model.TransactionType;
@@ -26,7 +27,7 @@ public class LedgerService {
     @Transactional
     public void createTransaction(TransactionDTO request) {
         if (ledgerRepository.existsByIdempotencyKey(request.idempotencyKey())) {
-            throw new RuntimeException();
+            throw new IdempotencyKeyException();
         }
 
         if (request.type() == TransactionType.DEBIT) {
