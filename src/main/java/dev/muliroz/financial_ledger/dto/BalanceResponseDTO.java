@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
-public record BalanceResponse (
+public record BalanceResponseDTO(
         UUID walletId,
         BigDecimal currentBalance,
         Currency currency,
