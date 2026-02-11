@@ -1,17 +1,15 @@
 package dev.muliroz.financial_ledger.controller;
 
-import dev.muliroz.financial_ledger.dto.BalanceResponse;
+import dev.muliroz.financial_ledger.dto.BalanceResponseDTO;
+import dev.muliroz.financial_ledger.dto.CreateWalletDTO;
 import dev.muliroz.financial_ledger.model.Wallet;
 import dev.muliroz.financial_ledger.service.WalletService;
+import jakarta.validation.Valid;
 import org.springframework.http.CacheControl;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -44,8 +42,8 @@ public class WalletController {
     }
 
     @GetMapping("/{id}/balance")
-    public ResponseEntity<BalanceResponse> getBalance(@PathVariable UUID id) {
-        BalanceResponse response = walletService.getBalance(id);
+    public ResponseEntity<BalanceResponseDTO> getBalance(@PathVariable UUID id) {
+        BalanceResponseDTO response = walletService.getBalance(id);
         return ResponseEntity.status(200)
                 .contentType(MediaType.APPLICATION_JSON)
                 .lastModified(ZonedDateTime.now())
@@ -55,5 +53,11 @@ public class WalletController {
                                 .cachePrivate()
                 )
                 .body(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<Wallet> createWallet(@Valid @RequestBody CreateWalletDTO request) {
+        walletService.createWallet(request);
+        return ResponseEntity.status(201).body(walletService.findWalletByCpfCnpj(request.cpfCnpj()));
     }
 }
