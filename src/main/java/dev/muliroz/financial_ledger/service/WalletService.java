@@ -1,6 +1,6 @@
 package dev.muliroz.financial_ledger.service;
 
-import dev.muliroz.financial_ledger.dto.BalanceResponse;
+import dev.muliroz.financial_ledger.dto.BalanceResponseDTO;
 import dev.muliroz.financial_ledger.dto.CreateWalletDTO;
 import dev.muliroz.financial_ledger.exception.ResourceNotFoundException;
 import dev.muliroz.financial_ledger.exception.WalletAlreadyRegisteredException;
@@ -31,9 +31,9 @@ public class WalletService {
                 .orElseThrow(() -> new ResourceNotFoundException("No wallet found with this CPF/CNPJ"));
     }
 
-    public BalanceResponse getBalance(UUID walletId) {
+    public BalanceResponseDTO getBalance(UUID walletId) {
         BigDecimal currentBalance = ledgerRepository.calculateBalance(walletId);
-        return new BalanceResponse(walletId, currentBalance, Currency.BRL, Instant.now());
+        return new BalanceResponseDTO(walletId, currentBalance, Currency.BRL, Instant.now());
     }
 
     @Transactional
