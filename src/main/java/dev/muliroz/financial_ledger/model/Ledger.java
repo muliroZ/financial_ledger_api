@@ -29,7 +29,7 @@ public class Ledger {
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "transaction_type", nullable = false)
     private TransactionType type;
 
     private String description;
