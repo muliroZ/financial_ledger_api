@@ -36,4 +36,11 @@ public class GlobalExceptionHandler {
                 .contentType(MediaType.TEXT_PLAIN)
                 .body(ex.getMessage());
     }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<?> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .contentType(MediaType.TEXT_PLAIN)
+                .body(ex.getMessage());
+    }
 }
